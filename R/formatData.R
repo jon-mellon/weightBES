@@ -10,10 +10,7 @@ formatData <- function(bes, region, waves = 1:6) {
 #   bes <- bes.backup
   wave <- max(waves)
   targets <- targets[targets$table!="partyMemberBinary", ]
-  colnames(bes)[colnames(bes)=="comb_pv_scot_w8w3"] <- "comb_pv_w8w3"     
-  colnames(bes)[colnames(bes)=="comb_pv_scot_w8w2"] <- "comb_pv_w8w2"
-  colnames(bes)[colnames(bes)=="comb_pv_scot_w8w1"] <- "comb_pv_w8w1"
-  
+
   bes$AgeGender <- as_factor(bes[, paste0("bpcas2w", wave)])
   bes$SocialGrade <- as_factor(bes[, paste0("socgrade4_w8w", wave)])
   
@@ -25,27 +22,19 @@ formatData <- function(bes, region, waves = 1:6) {
   bes$Partyid2010London <- as_factor(bes[, paste0("partyid2010_london_w8w", wave)])
   bes$Ethnicity <- as_factor(bes[, paste0("ethnicity2_w8w", wave)])
   
-  bes[, paste0("Wales_pcon_w8w", wave)][bes[, paste0("Wales_pcon_w8w", wave)]==0] <- NA
   bes$Region <- as_factor(bes[, paste0("newgor_eng_w8w", wave)])
   bes$WelshRegion <- as_factor(bes[, paste0("Wales_pcon_w8w", wave)] )
-  names(attributes(bes[, paste0("comb_pv_w8w", wave)])$labels) <- c("Con", "Lab", "LD", "SNP", 
-                                                                  "SNP (Holyrood) & Lab (wmster)", 
-                                                                  "Oth", "DNV")
-  
-  
+
   bes$HolyroodPastVote <- as_factor(bes[, paste0("comb_pv_w8w", wave)])
   
   if(region=="England") {
-    names(attributes(bes[, paste0("partyid2010_Eng_w8w", wave)])$labels) <- c("Labour", "Con", "Lib Dem",
-                                                                              "Oth", "None / DK")
+
     bes$Partyid2010 <- as_factor(bes[, paste0("partyid2010_Eng_w8w", wave)])
     bes <- bes[!bes$gor %in% c(7, 11, 10) & !is.na(bes$gor) & is.na(bes[, paste0("Wales_pcon_w8w", wave)]) & 
                  is.na(bes[, paste0("comb_pv_w8w", wave)]), ]
   }
   
   if(region!="England") {
-    names(attributes(bes[, paste0("partyid2010_Wales_w8w", wave)])$labels) <- 
-      c("Labour", "Con", "Lib Dem", "SNP/PC", "Oth", "None / DK")
     bes$Partyid2010 <- as_factor(bes[, paste0("partyid2010_Wales_w8w", wave)])
   }
   if(region=="Wales") {
