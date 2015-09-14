@@ -1,4 +1,5 @@
 createCustomWeights <- function(bes, waves = c(1,2,3,4,5,6), targets) {
+  require(Hmisc, haven)
   colnames(bes)[grepl(paste0("_w8w", max(waves)), colnames(bes), ignore.case = TRUE)]
   colnames(bes)[grepl(paste0("_w8w", 6), colnames(bes), ignore.case = TRUE)]
   colnames(bes)[grepl(paste0("_w8w", 5), colnames(bes), ignore.case = TRUE)]
