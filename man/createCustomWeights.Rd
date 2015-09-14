@@ -48,44 +48,21 @@ createCustomWeights(bes, waves = c(1, 2, 3, 4, 5, 6), targets)
 %% ~~objects to See Also as \code{\link{help}}, ~~~
 }
 \examples{
-##---- Should be DIRECTLY executable !! ----
-##-- ==>  Define data, use random,
-##--	or do  help(data=index)  for the standard data sets.
+library(weightBES)
 
-## The function is currently defined as
-function (bes, waves = c(1, 2, 3, 4, 5, 6), targets) 
-{
-    colnames(bes)[grepl(paste0("_w8w", max(waves)), colnames(bes), 
-        ignore.case = TRUE)]
-    colnames(bes)[grepl(paste0("_w8w", 6), colnames(bes), ignore.case = TRUE)]
-    colnames(bes)[grepl(paste0("_w8w", 5), colnames(bes), ignore.case = TRUE)]
-    colnames(bes)[grepl(paste0("_w8w", 4), colnames(bes), ignore.case = TRUE)]
-    colnames(bes)[grepl(paste0("_w8w", 3), colnames(bes), ignore.case = TRUE)]
-    colnames(bes)[grepl(paste0("_w8w", 2), colnames(bes), ignore.case = TRUE)]
-    colnames(bes)[grepl(paste0("_w8w", 1), colnames(bes), ignore.case = TRUE)]
-    targets[targets$table == "Newspaper", "group"] <- tolower(gsub(" ", 
-        "", targets[targets$table == "Newspaper", "group"]))
-    scotland.targets <- createWeightsList(targets, value = "Scotland")
-    london.targets <- createWeightsList(targets, value = "London")
-    england.targets <- createWeightsList(targets, value = "England")
-    wales.targets <- createWeightsList(targets, value = "Wales")
-    bes.eng <- formatData(bes = bes, region = "England", waves = waves)
-    bes.wales <- formatData(bes = bes, region = "Wales", waves = waves)
-    bes.london <- formatData(bes = bes, region = "London", waves = waves)
-    bes.scot <- formatData(bes = bes, region = "Scotland", waves = waves)
-    scot.wt <- createWeights(current.targets = scotland.targets, 
-        bes = bes.scot)
-    eng.wt <- createWeights(current.targets = england.targets, 
-        bes = bes.eng)
-    wales.wt <- createWeights(current.targets = wales.targets, 
-        bes = bes.wales)
-    london.wt <- createWeights(current.targets = london.targets, 
-        bes.london)
-    weights.df <- rbind(eng.wt, scot.wt, wales.wt, london.wt)
-    return(weights.df)
-  }
+data(bes.weight.vars)
+data(targets)
+
+weights.w1.w2.W3 <- createCustomWeights(bes = bes.weight.vars, waves = c(1,2, 3),
+                                        targets = targets)
+weights.w1.w4 <- createCustomWeights(bes.weight.vars, waves = c(1,4), 
+                                     targets = targets)
+weights.w6 <- createCustomWeights(bes.weight.vars, waves = c(6), 
+                                     targets = targets)
+
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~kwd1 }
-\keyword{ ~kwd2 }% __ONLY ONE__ keyword per line
+\keyword{ ~British Election Study }
+\keyword{ ~Weighting }% __ONLY ONE__ keyword per line
+\keyword{ ~Raking }% __ONLY ONE__ keyword per line

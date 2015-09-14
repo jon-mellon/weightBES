@@ -1,19 +1,16 @@
 createCustomWeights <- function(bes, waves = c(1,2,3,4,5,6), targets) {
   if(max(waves)==2) {
-    stop("Weighting on wave 2 characterisetics is currently not supported. This will be implemented soon.")
+    stop("Weighting on wave 2 characteristics is currently not supported. This will be implemented soon.")
   }
   require(Hmisc)
   require(haven)
-  colnames(bes)[grepl(paste0("_w8w", max(waves)), colnames(bes), ignore.case = TRUE)]
-  colnames(bes)[grepl(paste0("_w8w", 6), colnames(bes), ignore.case = TRUE)]
-  colnames(bes)[grepl(paste0("_w8w", 5), colnames(bes), ignore.case = TRUE)]
-  colnames(bes)[grepl(paste0("_w8w", 4), colnames(bes), ignore.case = TRUE)]
-  colnames(bes)[grepl(paste0("_w8w", 3), colnames(bes), ignore.case = TRUE)]
-  colnames(bes)[grepl(paste0("_w8w", 2), colnames(bes), ignore.case = TRUE)]
-  colnames(bes)[grepl(paste0("_w8w", 1), colnames(bes), ignore.case = TRUE)]
-  
-  targets <- targets[targets$table!="partyMemberBinary", ]
-  targets[targets$table=="Newspaper", "group"] <- tolower(gsub(" ", "", targets[targets$table=="Newspaper", "group"]))
+#   colnames(bes)[grepl(paste0("_w8w", max(waves)), colnames(bes), ignore.case = TRUE)]
+#   colnames(bes)[grepl(paste0("_w8w", 6), colnames(bes), ignore.case = TRUE)]
+#   colnames(bes)[grepl(paste0("_w8w", 5), colnames(bes), ignore.case = TRUE)]
+#   colnames(bes)[grepl(paste0("_w8w", 4), colnames(bes), ignore.case = TRUE)]
+#   colnames(bes)[grepl(paste0("_w8w", 3), colnames(bes), ignore.case = TRUE)]
+#   colnames(bes)[grepl(paste0("_w8w", 2), colnames(bes), ignore.case = TRUE)]
+#   colnames(bes)[grepl(paste0("_w8w", 1), colnames(bes), ignore.case = TRUE)]
   
   scotland.targets <- createWeightsList(targets, value = "Scotland")
   london.targets <- createWeightsList(targets, value = "London")
