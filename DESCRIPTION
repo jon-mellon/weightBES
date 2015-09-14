@@ -1,0 +1,9 @@
+Package: weightBES
+Type: Package
+Title: Raking weights for BES Internet panel
+Version: 1.0
+Date: 2015-09-14
+Author: Jonathan Mellon
+Maintainer: Who to complain to <jonathan.mellon@nuffield.ox.ac.uk>
+Description: Convenience functions for creating BES Internet panel weights
+License: Freeware
