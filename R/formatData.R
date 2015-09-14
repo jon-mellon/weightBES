@@ -8,7 +8,7 @@ formatData <- function(bes, region, waves = 1:6) {
   #     
   #   }
 #   bes <- bes.backup
-  wave <- max(wave)
+  wave <- max(waves)
   targets <- targets[targets$table!="partyMemberBinary", ]
   colnames(bes)[colnames(bes)=="comb_pv_scot_w8w3"] <- "comb_pv_w8w3"     
   colnames(bes)[colnames(bes)=="comb_pv_scot_w8w2"] <- "comb_pv_w8w2"
