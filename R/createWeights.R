@@ -17,6 +17,8 @@ createWeights <- function(current.targets, bes) {
   }
   sapply(names(current.targets), testVar)
   library(anesrake)
+#   levels(bes$Newspaper)
+#   targets[targets$table=="Newspaper", ]
   
   output <- anesrake(inputter = current.targets,
                      dataframe = vars, 
