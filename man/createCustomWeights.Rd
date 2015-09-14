@@ -8,7 +8,7 @@ Main function for creating custom weights for BESIP
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
 }
 \usage{
-createCustomWeights(bes, waves = c(1, 2, 3, 4, 5, 6), targets)
+createCustomWeights(bes, waves = 1:6, targets)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -63,6 +63,6 @@ weights.w6 <- createCustomWeights(bes.weight.vars, waves = c(6),
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
-\keyword{ ~British Election Study }
+\keyword{ ~BES }
 \keyword{ ~Weighting }% __ONLY ONE__ keyword per line
 \keyword{ ~Raking }% __ONLY ONE__ keyword per line
