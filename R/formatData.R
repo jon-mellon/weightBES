@@ -17,7 +17,6 @@ formatData <- function(bes, region, waves = 1:6) {
   bes$AgeGender <- as_factor(bes[, paste0("bpcas2w", wave)])
   bes$SocialGrade <- as_factor(bes[, paste0("socgrade4_w8w", wave)])
   
-  
   bes$Newspaper <- as_factor(bes[, paste0("bpcnews2010_w8w", wave)])
   levels(bes$Newspaper) <- tolower(gsub(" ", "", levels(bes$Newspaper)))
   levels(bes$Newspaper) <- gsub("teleg", "tele", levels(bes$Newspaper), ignore.case = TRUE)
@@ -32,6 +31,8 @@ formatData <- function(bes, region, waves = 1:6) {
   names(attributes(bes[, paste0("comb_pv_w8w", wave)])$labels) <- c("Con", "Lab", "LD", "SNP", 
                                                                   "SNP (Holyrood) & Lab (wmster)", 
                                                                   "Oth", "DNV")
+  
+  
   bes$HolyroodPastVote <- as_factor(bes[, paste0("comb_pv_w8w", wave)])
   
   if(region=="England") {
@@ -57,7 +58,9 @@ formatData <- function(bes, region, waves = 1:6) {
   if(region=="Scotland") {
     bes <- bes[!is.na(bes[, paste0("comb_pv_w8w", wave)]) & is.na(bes[, paste0("Wales_pcon_w8w", wave)]), ]
   }
-  print(unique(targets$table)[!unique(targets$table) %in% colnames(bes)])
+  if(length(unique(targets$table)[!unique(targets$table) %in% colnames(bes)])!=0) {
+    print(unique(targets$table)[!unique(targets$table) %in% colnames(bes)])  
+  }
   
   if(any(waves==1)) {
     bes <- bes[bes$wave1==1, ]

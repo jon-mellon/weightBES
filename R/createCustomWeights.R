@@ -1,4 +1,7 @@
 createCustomWeights <- function(bes, waves = c(1,2,3,4,5,6), targets) {
+  if(max(waves)==2) {
+    stop("Weighting on wave 2 characterisetics is currently not supported. This will be implemented soon.")
+  }
   require(Hmisc, haven)
   colnames(bes)[grepl(paste0("_w8w", max(waves)), colnames(bes), ignore.case = TRUE)]
   colnames(bes)[grepl(paste0("_w8w", 6), colnames(bes), ignore.case = TRUE)]
