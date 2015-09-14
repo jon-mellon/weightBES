@@ -9,7 +9,6 @@ formatData <- function(bes, region, waves = 1:6) {
   #   }
 #   bes <- bes.backup
   wave <- max(waves)
-  targets <- targets[targets$table!="partyMemberBinary", ]
 
   bes$AgeGender <- as_factor(bes[, paste0("bpcas2w", wave)])
   bes$SocialGrade <- as_factor(bes[, paste0("socgrade4_w8w", wave)])
